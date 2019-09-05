@@ -490,3 +490,54 @@ var ch byte = '\377' // \ 后面紧跟着长度为 3 的八进制数
 - 判断是否为字母：`unicode.IsLetter(ch)`
 - 判断是否为数字：`unicode.IsDigit(ch)`
 - 判断是否为空白符号：`unicode.IsSpace(ch)`
+
+## 4.6 字符串
+
+- Go 中的字符串里面的字符也可能根据需要占用 1 至 4 个字节
+  - 这与其它语言如 C++、Java 或者 Python 不同（Java 始终使用 2 个字节）
+  - 好处是不仅减少了内存和硬盘空间占用，同时也不用像其它语言那样需要对使用 UTF-8 字符集的文本进行编码和解码
+- 可以通过索引获取字符
+- 获取字符串中某个字节的地址的行为是非法的
+
+**2 种形式的字面值：**
+
+- 解释字符串：双引号
+- 非解释字符串：反引号
+
+**字符串拼接方法：**
+
+1. `+`
+2. `strings.Join()` 
+3. 字节缓冲（`bytes.Buffer`）拼接
+
+### 练习
+
+> 创建一个用于统计字节和字符（rune）的程序，并对字符串 `asSASA ddd dsjkdsjs dk` 进行分析，然后再分析 `asSASA ddd dsjkdsjsこん dk`，最后解释两者不同的原因（提示：使用 unicode/utf8 包）。
+
+```go
+package main
+
+import (
+	"fmt"
+	"unicode/utf8"
+)
+
+func main() {
+	str1 := "asSASA ddd dsjkdsjs dk"
+	fmt.Printf("The number of bytes in string str1 is %d\n", len(str1))
+	fmt.Printf("The number of characters in string str1 is %d\n", utf8.RuneCountInString(str1))
+	str2 := "asSASA ddd dsjkdsjsこん dk"
+	fmt.Printf("The number of bytes in string str2 is %d\n", len(str2))
+	fmt.Printf("The number of characters in string str1 is %d\n", utf8.RuneCountInString(str2))
+}
+```
+
+输出：
+
+```
+API server listening at: 127.0.0.1:30602
+The number of bytes in string str1 is 22
+The number of characters in string str1 is 22
+The number of bytes in string str2 is 28
+The number of characters in string str1 is 24
+```
