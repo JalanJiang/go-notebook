@@ -2,7 +2,7 @@
 
 # 《Go入门指南》学习笔记
 
-- 记录 [《Go入门指南》](https://github.com/unknwon/the-way-to-go_ZH_CN) 学习笔记
+- 记录 [《Go入门指南》](https://github.com/unknwon/the-way-to-go_ZH_CN) 学习笔记，[点此跳转目录](https://github.com/unknwon/the-way-to-go_ZH_CN/blob/master/eBook/directory.md)
 
 ## 目录大纲与学习进度
 
@@ -44,13 +44,13 @@
 - [x] 4.2 Go 程序的基本结构和要素
 - [x] 4.3 常量
 - [x] 4.4 变量
-- [ ] 4.5 基本类型和运算符
-- [ ] 4.6 字符串
+- [x] 4.5 基本类型和运算符
+- [x] 4.6 字符串
 - [ ] 4.7 strings 和 strconv 包
 - [ ] 4.8 时间和日期
 - [ ] 4.9 指针
 
-#### 第5章：控制结构
+#### 第 5 章：控制结构
 
 - [ ] 5.1 if-else 结构
 - [ ] 5.2 测试多返回值函数的错误
@@ -59,7 +59,7 @@
 - [ ] 5.5 Break 与 continue
 - [ ] 5.6 标签与 goto
 
-#### 第6章：函数（function）
+#### 第 6 章：函数（function）
 
 - [ ] 6.1 介绍
 - [ ] 6.2 函数参数与返回值
@@ -73,3 +73,7 @@
 - [ ] 6.10 使用闭包调试
 - [ ] 6.11 计算函数执行时间
 - [ ] 6.12 通过内存缓存来提升性能
+
+#### 第 8 章：Map
+
+- [x] 8.1 声明、初始化和 make
