@@ -2,7 +2,7 @@
 
 # 《Go入门指南》学习笔记
 
-- 记录《Go入门指南》学习笔记
+- 记录 [《Go入门指南》](https://github.com/unknwon/the-way-to-go_ZH_CN) 学习笔记
 
 ## 目录大纲与学习进度
 
