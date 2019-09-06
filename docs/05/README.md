@@ -26,3 +26,21 @@ if val := 10, val > max {
     // do something
 }
 ```
+
+----
+
+## 5.2 测试多返回值函数的错误
+
+Go 语言的函数经常使用两个返回值来表示执行是否成功：
+
+- 返回某个值以及 true 表示成功
+- 返回零值（或 nil）和 false 表示失败
+- 当不使用 true 或 false 的时候，也可以使用一个 error 类型的变量来代替作为第二个返回值：成功执行的话，error 的值为 nil，否则就会包含相应的错误信息
+
+```go
+if value, ok := readData(); ok {
+    // do something
+}
+```
+
+----
