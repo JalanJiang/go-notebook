@@ -69,3 +69,45 @@ func main() {
 ```
 
 ----
+
+## 6.3 传递变长参数
+
+如果函数的最后一个参数是采用 `...type` 的形式，那么这个函数就可以处理一个变长的参数，这个长度可以为 0，这样的函数称为变参函数。
+
+```go
+func Greeting(prefix string, who ...string)
+// 变量 who 的值为 []string{"Joe", "Anna", "Eileen"}
+Greeting("hello", "Joe", "Anna", "Eileen")
+```
+
+如果参数被存储在一个 `slice` 类型的变量 `slice` 中，则可以通过 `slice...` 的形式来传递参数，调用变参函数：
+
+```go
+// ???
+func main() {
+    slice := []int{1, 2, 3}
+    x = min(sloce...)
+}
+
+func min(s ...int) int {
+    // ...
+}
+```
+
+**但是如果变长参数的类型并不是都相同的：**
+
+方案一：使用结构
+
+```go
+type Options struct {
+    par1 type1,
+    par2, type2,
+    // ...
+}
+```
+
+方案二：使用空接口
+
+如果一个变长参数的类型没有被指定，则可以使用默认的空接口 `interface{}`，这样就可以接受任何类型的参数（详见第 11.9 节）。
+
+----
