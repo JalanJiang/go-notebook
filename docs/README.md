@@ -1,10 +1,11 @@
 <p align="center"><img width="100px" src="https://blog.golang.org/lib/godoc/images/footer-gopher.jpg"></p>
 
-# 《Go入门指南》学习笔记
+# The Way To Go
 
 - 记录 [《Go入门指南》](https://github.com/unknwon/the-way-to-go_ZH_CN) 学习笔记，[点此跳转目录](https://github.com/unknwon/the-way-to-go_ZH_CN/blob/master/eBook/directory.md)
+- 使用 [docsify](https://docsify.js.org/#/) 构建，搭建教程见 [《docsify 入坑指南与我放弃 Gitbook 的那些理由》](http://jalan.space/2019/06/21/2019/begin-docsify/)
 
-## 目录大纲与学习进度
+## 目录大纲
 
 ### 第一部分：学习 Go 语言
 
