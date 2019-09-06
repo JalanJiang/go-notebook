@@ -56,7 +56,7 @@
 - [x] 5.2 测试多返回值函数的错误
 - [x] 5.3 switch 结构
 - [x] 5.4 for 结构
-- [ ] 5.5 Break 与 continue
+- [x] 5.5 Break 与 continue
 - [ ] 5.6 标签与 goto
 
 #### 第 6 章：函数（function）

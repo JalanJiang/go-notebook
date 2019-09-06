@@ -131,3 +131,9 @@ for pos, char := range str {
 ```
 
 ----
+
+## 5.5 Break 与 continue
+
+- break 的作用范围为该语句出现后的最内部的结构，它可以被用于任何形式的 for 循环
+  - 在 switch 或 select 语句中（详见第 13 章），break 语句的作用结果是跳过整个代码块，执行后续的代码
+- continue 忽略剩余的循环体而直接进入下一次循环的过程
