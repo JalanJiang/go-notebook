@@ -541,3 +541,131 @@ The number of characters in string str1 is 22
 The number of bytes in string str2 is 28
 The number of characters in string str1 is 24
 ```
+
+----
+
+## 4.7 strings 和 strconv 包
+
+Go 中使用 `strings` 包来完成对字符串的主要操作。
+
+### 4.7.1 前缀和后缀
+
+```go
+// HasPrefix 判断字符串 s 是否以 prefix 开头
+strings.HasPrefix(s, prefix string) bool
+// HasSuffix 判断字符串 s 是否以 suffix 结尾
+strings.HasSuffix(s, suffix string) bool
+```
+
+### 4.7.2 字符串包含关系
+
+```go
+// Contains 判断字符串 s 是否包含 substr
+strings.Constains(s, substr string) bool
+```
+
+### 4.7.3 判断子字符串或字符在父字符串中出现的位置（索引）
+
+```go
+// Index 返回字符串 str 在字符串 s 中的索引（str 的第一个字符的索引）
+// -1 表示字符串 s 不包含字符串 str
+strings.Index(s, str string) int
+// LastIndex 返回字符串 str 在字符串 s 中最后出现位置的索引（str 的第一个字符的索引）
+// 1 表示字符串 s 不包含字符串 str
+strings.LastIndex(s, str string) int
+// 如果需要查询非 ASCII 编码的字符在父字符串中的位置，建议使用以下函数来对字符进行定位
+strings.IndexRune(s string, r rune) int
+```
+
+### 4.7.4 字符串替换
+
+```go
+// Replace 用于将字符串 str 中的前 n 个字符串 old 替换为字符串 new，并返回一个新的字符串
+// n = -1 则替换所有字符串 old 为字符串 new
+strings.Replace(str, old, new, n) string
+```
+
+### 4.7.5 统计字符串出现次数
+
+```go
+// Count 用于计算字符串 str 在字符串 s 中出现的非重叠次数
+strings.Count(s, str string) int
+```
+
+### 4.7.6 重复字符串
+
+```go
+// Repeat 用于重复 count 次字符串 s 并返回一个新的字符串
+strings.Repeat(s, count int) string
+```
+
+### 4.7.7 修改字符串大小写
+
+```go
+strings.ToLower(s) string
+strings.ToUpper(s) string
+```
+
+### 4.7.8 修剪字符串
+
+```go
+// 剔除字符串开头和结尾的空白符号
+strings.TrimSpace(s)
+// 剔除指定字符
+strings.Trim(s, "cut") // 剔除头尾的 cut
+
+strings.TrimLeft(s)
+strings.TrimRight(s)
+```
+
+### 4.7.9 分割字符串
+
+```go
+// 会利用 1 个或多个空白符号来作为动态长度的分隔符将字符串分割成若干小块，并返回一个 slice
+strings.Fields(s)
+// 用于自定义分割符号来对指定字符串进行分割，同样返回 slice
+strings.Split(s, sep)
+```
+
+### 4.7.10 拼接 slice 到字符串
+
+```go
+// Join 用于将元素类型为 string 的 slice 使用分割符号来拼接组成一个字符串
+strings.Join(sl, []string, sep string) string
+```
+
+- [官方文档](https://golang.org/pkg/strings/)
+- [国内用户可访问](http://docs.studygolang.com/pkg/strings/)
+
+### 4.7.11 从字符串中读取内容
+
+```go
+// 用于生成一个 Reader 并读取字符串中的内容，然后返回指向该 Reader 的指针
+strings.NewReader(str)
+```
+
+### 4.7.12 字符串与其它类型的转换
+
+通过 `strconv` 包实现。
+
+**数字 -> 字符串：**
+
+```go
+// 返回数字 i 所表示的字符串类型的十进制数
+strconv.Itoa(i int) string
+// 将 64 位浮点型的数字转换为字符串
+strconv.FormatFloat(f float64, fmt byte, prec int, bitSize int) string
+```
+
+- 其中 fmt 表示格式（其值可以是 'b'、'e'、'f' 或 'g'）
+- prec 表示精度
+- bitSize 则使用 32 表示 float32，用 64 表示 float64
+
+**字符串 -> 数字：**
+
+```go
+// 将字符串转换为 int 型
+strconv.Atoi(s string) (i int, err error)
+// 将字符串转换为 float64 型
+strconv.ParseFloat(s string, bitSize int) (f float64, err error)
+```
