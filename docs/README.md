@@ -57,7 +57,7 @@
 - [x] 5.3 switch 结构
 - [x] 5.4 for 结构
 - [x] 5.5 Break 与 continue
-- [ ] 5.6 标签与 goto
+- [x] 5.6 标签与 goto
 
 #### 第 6 章：函数（function）
 

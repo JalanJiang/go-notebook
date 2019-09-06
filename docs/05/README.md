@@ -137,3 +137,48 @@ for pos, char := range str {
 - break 的作用范围为该语句出现后的最内部的结构，它可以被用于任何形式的 for 循环
   - 在 switch 或 select 语句中（详见第 13 章），break 语句的作用结果是跳过整个代码块，执行后续的代码
 - continue 忽略剩余的循环体而直接进入下一次循环的过程
+
+----
+
+## 5.6 标签与 goto
+
+- for、switch 或 select 语句都可以配合标签（label）形式的标识符使用，即某一行第一个以冒号（:）结尾的单词
+- 标签的名称是大小写敏感的，为了提升可读性，一般建议使用全部大写字母
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+LABEL1:
+	for i := 0; i <= 5; i++ {
+		for j := 0; j <= 5; j++ {
+			if j == 4 {
+				continue LABEL1
+				// continue
+			}
+			fmt.Printf("i is :%d, and j is: %d\n", i, j)
+		}
+	}
+}
+```
+
+使用 goto 语句和标签配合使用来模拟循环：
+
+```go
+package main
+
+func main() {
+	i := 0
+HERE:
+	print(i)
+	i++
+	if i == 5 {
+		return
+	}
+	goto HERE
+}
+```
+
+> 使用标签和 goto 语句是不被鼓励的：它们会很快导致非常糟糕的程序设计，而且总有更加可读的替代方案来实现相同的需求。如果您必须使用 goto，应当只使用正序的标签（标签位于 goto 语句之后），但注意标签和 goto 语句之间不能出现定义新变量的语句，否则会导致编译失败。
