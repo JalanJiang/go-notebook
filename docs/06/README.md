@@ -275,3 +275,17 @@ func main() {
 
 // 2019/09/06 18:30:45 /Users/jalan/www/own/go-demo/main.go:18
 ```
+
+----
+
+## 6.11 计算函数执行时间
+
+```go
+start := time.Now()
+longCalculation()
+end := time.Now()
+delta := end.Sub(start)
+fmt.Printf("longCalculation took this amount of time: %s\n", delta)
+```
+
+----
