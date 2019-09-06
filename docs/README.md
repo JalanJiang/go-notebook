@@ -1,4 +1,6 @@
-<p align="center"><img width="100px" src="https://blog.golang.org/lib/godoc/images/footer-gopher.jpg"></p>
+<!-- <p align="center"><img width="200px" src="https://blog.golang.org/lib/godoc/images/footer-gopher.jpg"></p> -->
+<p align="center"><img width="200px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUIISmTbpsEq_63LdPlLk7WSgplC5Tq1NnzSPC_hcClWm0Uah7PQ
+"></p>
 
 # The Way To Go
 
