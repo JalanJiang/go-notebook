@@ -1,5 +1,3 @@
-## 5.0 控制结构
-
 ## 5.1 if-else 结构
 
 当 if 结构内有 break、continue、goto 或者 return 语句时，Go 代码的常见写法是省略 else 部分。
@@ -44,3 +42,31 @@ if value, ok := readData(); ok {
 ```
 
 ----
+
+## 5.3 switch 结构
+
+- `var1` 可以是任何类型
+- `val1` 和 `val2` 必须是相同类型
+- 一旦成功地匹配到某个分支，在执行完相应代码后就会退出整个 `switch` 代码块，不需要特别使用 `break` 语句来表示结束
+
+```go
+switch var1 {
+    case val1:
+        // ...
+    case val2:
+        // ...
+    default:
+        // ...
+}
+```
+
+希望继续执行后续分支的代码，可以使用 `fallthrough` 关键字来达到目的：
+
+```go
+switch i {
+    // 当代码块只有一行时，可以直接放置在 case 语句之后
+    case 0: fallthrough
+    case 1:
+        f()
+}
+```
