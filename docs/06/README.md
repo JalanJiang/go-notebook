@@ -153,3 +153,21 @@ type Options struct {
 在使用递归函数时经常会遇到的一个重要问题就是栈溢出：一般出现在大量的递归调用导致的程序栈内存分配耗尽。这个问题可以通过一个名为 [懒惰求值](https://zh.wikipedia.org/wiki/%E6%83%B0%E6%80%A7%E6%B1%82%E5%80%BC) 的技术解决。
 
 ----
+
+## 6.7 将函数作为参数
+
+函数可以作为其它函数的参数进行传递，然后在其它函数内调用执行，一般称之为**回调**。
+
+```go
+func main() {
+    callback(1, Add)
+}
+
+func Add(a, b int) {
+    // do something
+}
+
+func callback(y int, f func(int, int)) {
+    f(y, 2)
+}
+```
