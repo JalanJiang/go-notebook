@@ -184,3 +184,71 @@ func callback(y int, f func(int, int)) {
   - 这种状态（作用域内的变量）都被共享到闭包的环境中，因此这些变量可以在闭包中被操作，直到被销毁
 
 ----
+
+## 6.9 应用闭包：将函数作为返回值
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+	// p2 是一个 +2 的函数
+	p2 := Add2()
+	fmt.Printf("call Add2 for 3 gives:%v\n", p2(3))
+
+	TwoAdder := Adder(2)
+	fmt.Printf("The result is: %v\n", TwoAdder(3))
+}
+
+// Add2 is a function
+func Add2() func(b int) int {
+	// 返回一个函数
+	return func(b int) int {
+		return b + 2
+	}
+}
+
+// Adder is a function
+func Adder(a int) func(b int) int {
+	// 返回一个函数
+	return func(b int) int {
+		return a + b
+	}
+}
+
+// Output:
+// call Add2 for 3 gives:5
+// The result is: 5
+```
+
+闭包函数保存并积累其中的变量的值，不管外部函数退出与否，它都能够**继续操作外部函数中的局部变量**。在多次调用中，变量 x 的值是被保留的：
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+	// p2 是一个 +2 的函数
+	var f = Adder()
+	fmt.Print(f(1), "-")
+	fmt.Print(f(20), "-")
+	fmt.Print(f(300))
+}
+
+// Adder is a function
+func Adder() func(b int) int {
+	// 返回一个函数
+	var x int
+	return func(delta int) int {
+		x += delta
+		return x
+	}
+}
+
+// Output:
+// 1 - 21 - 321
+```
+
+----
