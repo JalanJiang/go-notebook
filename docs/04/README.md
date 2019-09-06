@@ -669,3 +669,20 @@ strconv.Atoi(s string) (i int, err error)
 // 将字符串转换为 float64 型
 strconv.ParseFloat(s string, bitSize int) (f float64, err error)
 ```
+
+## 4.8 时间和日期
+
+- `func (t Time) Format(layout string) string`，可以根据一个格式化字符串来将一个时间 t 转换为相应格式的字符串
+
+```go
+// 当前时间
+t := time.Now()
+fmt.Printf("%02d.%02d.%4d", t.Day(), t.Month(), t.Year())
+// UTC
+t  = time.Now().UTC()
+// 计算
+week = 60 * 60 * 24 * 7 * 1e9
+week_from_now := t.Add(time.Duration(week))
+// formatting
+fmt.Println(t.Format(time.RFC822))
+```
