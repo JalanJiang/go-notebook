@@ -127,3 +127,21 @@ type Options struct {
 5. 实现代码追踪：一个基础但十分实用的实现代码执行追踪的方案就是在进入和离开某个函数打印相关的消息
 
 ----
+
+## 6.5 内置函数
+
+- close
+- len
+- cap
+- new
+- make
+- copy
+- append
+- panic
+- recover
+- print
+- println
+- complex
+- real imag
+
+----
