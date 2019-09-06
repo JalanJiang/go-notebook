@@ -252,3 +252,26 @@ func Adder() func(b int) int {
 ```
 
 ----
+
+## 6.10 使用闭包调试
+
+可以使用 `runtime` 或 `log` 包中的特殊函数来实现调试功能。
+
+```go
+package main
+
+import (
+	"log"
+	"runtime"
+)
+
+func main() {
+	where := func() {
+		_, file, line, _ := runtime.Caller(1)
+		log.Printf("%s:%d", file, line)
+	}
+	where()
+}
+
+// 2019/09/06 18:30:45 /Users/jalan/www/own/go-demo/main.go:18
+```
