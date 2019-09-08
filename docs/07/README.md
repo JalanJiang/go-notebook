@@ -148,3 +148,16 @@ func NewBuffer(buf []byte) *Buffer
 buffer.WriteString(s) // 追加
 buffer.String() // 转为 string
 ```
+
+----
+
+## 7.3 For-range 结构
+
+```go
+// value 只是 slice1 某个索引位置的值的一个拷贝
+for ix, value := range slice {
+    // do...
+}
+```
+
+----
