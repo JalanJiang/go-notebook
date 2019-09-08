@@ -59,3 +59,79 @@ map3 := make(map[int]string, 100)
 map1 := make(map[int][]int)
 map2 := make(map[int]*[]int)
 ```
+
+## 8.2 测试键值对是否存在及删除元素
+
+```go
+val1, isPresent = map1[key1]
+```
+
+和 if 混用：
+
+```go
+if _, ok := map1[key1]; ok {
+    // ...
+}
+```
+
+从 map1 删除 key1:
+
+```go
+// 如果 key1 不存在，该操作不会产生错误
+delete(map1, key1)
+```
+
+---- 
+
+## 8.3 for-range 的配套用法
+
+```go
+for key, value := range map1 {
+    // ...
+}
+```
+
+----
+
+## 8.4 map 类型的切片
+
+假设我们想获取一个 map 类型的切片，我们必须使用两次 `make()` 函数：
+
+1. 分配切片
+2. 分配切片中每个 map 元素
+
+```go
+items := make([]map[int]int, 5)
+for i := range items {
+    items[i] = make(map[int]int, 1)
+    items[i][1] = 2
+}
+```
+
+----
+
+## 8.5 map 的排序
+
+!> map 默认是无序的，不管是按照 key 还是按照 value 默认都不排序。
+
+如果你想为 map 排序：
+
+1. 将 key（或者 value）拷贝到一个切片
+2. 对切片排序
+3. 使用切片的 for-range 方法打印出所有的 key 和 value
+
+如果你想要一个排序的列表你最好使用结构体切片，这样会更有效：
+
+```go
+type name struct {
+    key string
+    value int
+}
+```
+
+----
+
+## 8.6 将 map 的键值对调
+
+1. 创建一个新的 map
+2. 循环，对新的 map 赋值
