@@ -61,3 +61,90 @@ var arryKeyValue = [5]string{3: "Chris", 4: "Ron"} // 只有索引 3 和 4 被�
 - 使用数组的切片
 
 ----
+
+## 7.2 切片
+
+- 切片是一个引用类型（像 Python 里的 list）
+- `cap()` 测量切片最长能达到多少
+- 因为切片是引用，所以它们不需要使用额外的内存并且比使用数组更有效率，所以在 Go 代码中 切片比数组更常用
+
+```go
+// 声明格式
+var identifier []type
+
+// 初始化格式 start ~ end-1
+var identifier []type = arr1[start:end]
+
+// 完整数组
+var identifier []type = arr1[:]
+var identifier = &arr1
+
+// 类似数组的方式初始化（不指定长度）
+var x = []int{2, 3, 4, 5}
+```
+
+!> 绝对不要用指针指向 slice。切片本身已经是一个引用类型，所以它本身就是一个指针
+
+### 7.2.2 将切片传递给函数
+
+如果你有一个函数需要对数组做操作，你可能总是需要**把参数声明为切片**。当你调用该函数时，把数组分片，创建为一个 切片引用并传递给该函数。
+
+### 7.2.3 用 make() 创建一个切片
+
+当相关**数组还没有定义时**：
+
+- 我们可以使用 `make()` 函数来创建一个切片
+- 同时创建好相关数组：`var slice1 []type = make([]type, len)`
+
+只占用 len 个数，而不占用整个数组：
+
+```go
+var slice2 []int = make([]int, len, cap)
+```
+
+所以下面两种方法可以生成相同的切片：
+
+```go
+make([]int, 50, 100)
+new([100]int)[0:50]
+```
+
+### 7.2.4 new() 和 make() 的区别
+
+- `new(T)`
+  - 为每个新的类型 T 分配一片内存
+  - 初始化为 0 并返回类型为 `*T` 的**内存地址**（指向类型为 T，值为 0 的地址的指针）
+  - 适用于值类型（数组、结构体）
+  - 相当于 `&T{}`
+- `make(T)`
+  - 返回一个类型为 T 的初始值
+  - 适用于 3 种内建的引用类型：切片、map 和 channel
+
+![](https://github.com/unknwon/the-way-to-go_ZH_CN/raw/master/eBook/images/7.2_fig7.3.png?raw=true)
+
+!> new 函数分配内存，make 函数初始化。
+
+### 7.2.5 多维切片
+
+和数组一样，切片通常也是一维的，但是也可以由一维组合成高维。
+
+### 7.2.6 bytes 包
+
+定义：
+
+```go
+var buffer bytes.Buffer
+// 或使用 new 获得一个指针
+var r *bytes.Buffer = new(bytes.Buffer)
+// 或通过函数
+func NewBuffer(buf []byte) *Buffer
+```
+
+通过 buffer 串联字符串：
+
+> 这种实现方式比使用 += 要更节省内存和 CPU，尤其是要串联的字符串数目特别多的时候。
+
+```go
+buffer.WriteString(s) // 追加
+buffer.String() // 转为 string
+```
