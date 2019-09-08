@@ -191,3 +191,95 @@ sl3 = append(sl3, 4, 5, 6)
 ```
 
 ----
+
+## 7.6 字符串、数组和切片的应用
+
+### 7.6.1 从字符串生成字节切片
+
+```go
+// 获取一个字节的切片 c
+c := []byte(s)
+// 也可以用 copy
+copy(dst []byte, src string)
+```
+
+将字符串追加到切片的末尾：
+
+```go
+var b []byte
+var s string
+b = append(b, s...)
+```
+
+### 7.6.2 获取字符串的某一部分
+
+```go
+substr := str[start:end] 
+```
+
+### 7.6.3 字符串和切片的内存结构
+
+一个字符串实际上是一个双字结构：
+
+1. 一个指向实际数据的指针
+2. 记录字符串长度的整数
+
+![](https://github.com/unknwon/the-way-to-go_ZH_CN/raw/master/eBook/images/7.6_fig7.4.png)
+
+### 7.6.4 修改字符串中的某个字符
+
+!> Go 语言中的字符串是不可变的，也就是说 `str[index]` 这样的表达式是不可以被放在等号左侧的。
+
+因此：
+
+1. 先将字符串转换成字节数组
+2. 通过修改数组中的元素值来达到修改字符串的目的
+3. 将字节数组转换回字符串格式
+
+```go
+s := "hello"
+c := []byte(s)
+c[0] = '0'
+s2 := string(c)
+``` 
+
+### 7.6.5 字节数组对比函数
+
+```go
+// 返回两个字节数组字典顺序的整数对比结果
+func Compare(a, b[]byte) int {
+    for i:=0; i < len(a) && i < len(b); i++ {
+        switch {
+        case a[i] > b[i]:
+            return 1
+        case a[i] < b[i]:
+            return -1
+        }
+    }
+    // 数组的长度可能不同
+    switch {
+    case len(a) < len(b):
+        return -1
+    case len(a) > len(b):
+        return 1
+    }
+    return 0 // 数组相等
+}
+```
+
+### 7.6.6 搜索及排序切片和数组
+
+`sort` 实现常见的搜索和排序操作。
+
+- `func Ints(a []int)` 实现对 int 类型的切片排序 `sort.Ints(arri)`
+- `IntsAreSorted(a []int) bool` 检查是否已经排过序
+- `func Float64s(a []float64)` 排序 float64 元素
+- `func Strings(a []string)` 排序字符串元素
+
+### 7.6.7 append 函数常见操作
+
+> 可以使用切片和 append 操作来表示任意可变长度的序列。
+
+### 7.6.8 切片和垃圾回收
+
+!> 只有在没有任何切片指向的时候，底层的数组内存才会被释放，这种特性有时会导致程序占用多余的内存。
