@@ -4,7 +4,7 @@
 
 # The Way To Go
 
-- 记录 [《Go入门指南》](https://github.com/unknwon/the-way-to-go_ZH_CN) 学习笔记，[点此跳转目录](https://github.com/unknwon/the-way-to-go_ZH_CN/blob/master/eBook/directory.md)
+- 记录 [《Go入门指南》](https://github.com/unknwon/the-way-to-go_ZH_CN) 学习笔记，[点此跳转目录](https://github.com/unknwon/the-way-to-go_ZH_CN/blob/master/eBook/directory.md)，[点此查看原仓库练习答案](https://github.com/unknwon/the-way-to-go_ZH_CN/tree/master/eBook/exercises)
 - 使用 [docsify](https://docsify.js.org/#/) 构建，搭建教程见 [《docsify 入坑指南与我放弃 Gitbook 的那些理由》](http://jalan.space/2019/06/21/2019/begin-docsify/)
 
 ## 目录大纲
