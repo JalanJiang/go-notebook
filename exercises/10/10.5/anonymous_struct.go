@@ -15,6 +15,9 @@ func main() {
 	test := TestStruct{3.0, 3, "test"}
 	fmt.Println(test.a, test.int, test.string)
 	fmt.Println(test)
+
+	p := Person{"a", "b"}
+	fmt.Println(p.lastName)
 }
 
 /*Output:
