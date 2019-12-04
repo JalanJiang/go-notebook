@@ -391,10 +391,58 @@ func main() {
 
 ### 10.6.6 如何在类型中嵌入功能
 
+主要有两种方法来实现在类型中嵌入功能：
+
+1. 聚合（或组合）：包含一个所需功能类型的具名字段。
+2. 内嵌：内嵌（匿名地）所需功能类型，像前一节 10.6.5 所演示的那样。
+
 ### 10.6.7 多重继承
+
+在 Go 语言中，通过在类型中嵌入所有必要的父类型，可以很简单的实现多重继承。
+
+```go
+package main
+
+import (
+	"fmt"
+)
+
+type Camera struct{}
+
+func (c *Camera) TakeAPicture() string {
+	return "Click"
+}
+
+type Phone struct{}
+
+func (p *Phone) Call() string {
+	return "Ring Ring"
+}
+
+type CameraPhone struct {
+    // 嵌入两个类型
+	Camera
+	Phone
+}
+
+func main() {
+	cp := new(CameraPhone)
+	fmt.Println("Our new CameraPhone exhibits multiple behaviors...")
+	fmt.Println("It exhibits behavior of a Camera: ", cp.TakeAPicture())
+	fmt.Println("It works like a Phone too: ", cp.Call())
+}
+```
 
 ### 10.6.8 通用方法和方法命名
 
+遵循统一命名规则。
+
 ### 10.6.9 和其他面向对象语言比较 Go 的类型和方法
 
+![](https://github.com/unknwon/the-way-to-go_ZH_CN/raw/master/eBook/images/10.6.9_fig10.4.jpg?raw=true)
 
+## 总结
+
+- 在 Go 中，类型就是类（数据和关联的方法）
+- 在 Go 中，代码复用通过**组合**和**委托**实现
+- 多态通过**接口**的使用来实现
