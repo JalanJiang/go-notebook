@@ -1,11 +1,9 @@
 /*
 使用包含一个索引和一个 int 数组的结构体作为底层数据结构，索引表示第一个空闲的位置。
 */
-
-package main
+package stack
 
 import (
-	"fmt"
 	"strconv"
 )
 
@@ -38,29 +36,4 @@ func (st Stack) String() string {
 		str += "[" + strconv.Itoa(ix) + ":" + strconv.Itoa(st.data[ix]) + "] "
 	}
 	return str
-}
-
-func main() {
-	st1 := new(Stack)
-	fmt.Printf("%v\n", st1)
-	st1.Push(3)
-	fmt.Printf("%v\n", st1)
-	st1.Push(7)
-	fmt.Printf("%v\n", st1)
-	st1.Push(10)
-	fmt.Printf("%v\n", st1)
-	st1.Push(99)
-	fmt.Printf("%v\n", st1)
-	p := st1.Pop()
-	fmt.Printf("Popped %d\n", p)
-	fmt.Printf("%v\n", st1)
-	p = st1.Pop()
-	fmt.Printf("Popped %d\n", p)
-	fmt.Printf("%v\n", st1)
-	p = st1.Pop()
-	fmt.Printf("Popped %d\n", p)
-	fmt.Printf("%v\n", st1)
-	p = st1.Pop()
-	fmt.Printf("Popped %d\n", p)
-	fmt.Printf("%v\n", st1)
 }
