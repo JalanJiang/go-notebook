@@ -441,8 +441,16 @@ func main() {
 
 ![](https://github.com/unknwon/the-way-to-go_ZH_CN/raw/master/eBook/images/10.6.9_fig10.4.jpg?raw=true)
 
+## 10.7 类型的 String() 方法和格式化描述符
+
+如果类型定义了 `String()` 方法，它会被用在 `fmt.Printf()` 中生成默认的输出：等同于使用格式化描述符 `%v` 产生的输出。
+
+- 当你广泛使用一个自定义类型时，最好为它定义 `String()` 方法。
+- 不要在 `String()` 方法里面调用涉及 `String()` 方法的方法，它会导致意料之外的错误。
+
 ## 总结
 
 - 在 Go 中，类型就是类（数据和关联的方法）
 - 在 Go 中，代码复用通过**组合**和**委托**实现
 - 多态通过**接口**的使用来实现
+  
