@@ -448,6 +448,26 @@ func main() {
 - 当你广泛使用一个自定义类型时，最好为它定义 `String()` 方法。
 - 不要在 `String()` 方法里面调用涉及 `String()` 方法的方法，它会导致意料之外的错误。
 
+## 10.8 垃圾回收和 SetFinalizer
+
+- 通过调用 `runtime.GC()` 函数可以显式的触发 GC
+
+如果想知道当前的内存状态，可以使用：
+
+```go
+// fmt.Printf("%d\n", runtime.MemStats.Alloc/1024)
+// 此处代码在 Go 1.5.1下不再有效，更正为
+var m runtime.MemStats
+runtime.ReadMemStats(&m)
+fmt.Printf("%d Kb\n", m.Alloc / 1024)
+```
+
+如果需要在一个对象 obj 被从内存移除前执行一些特殊操作，比如写到日志文件中，可以通过如下方式调用函数来实现：
+
+```go
+runtime.SetFinalizer(obj, func(obj *typeObj))
+```
+
 ## 总结
 
 - 在 Go 中，类型就是类（数据和关联的方法）
